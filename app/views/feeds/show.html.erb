@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @feed.title %>
+</p>
+
+<p>
+  <b>Host:</b>
+  <%= @feed.host %>
+</p>
+
+<p>
+  <b>Feed url:</b>
+  <%= @feed.feed_url %>
+</p>
+
+<p>
+  <b>Etag:</b>
+  <%= @feed.etag %>
+</p>
+
+<p>
+  <b>Last modified:</b>
+  <%= @feed.last_modified %>
+</p>
+<%= link_to 'Edit', edit_feed_path(@feed) %> |
+<%= link_to 'Back', feeds_path %>
+<hr>
+<ul>
+<% @feed.articles.order('published_at DESC').each do |article| %>
+
+    <li><b><span style="font-size:14px;"><%= link_to article.name, article.url , :target => "_blank"%></span></b> ( <%= @feed.host %>, <%= time_ago_in_words(article.published_at)%> ago ) </li>
+    <%= article.summary %>
+    <hr>
+<% end %>
+<ul>
+

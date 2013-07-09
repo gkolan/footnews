@@ -1,0 +1,16 @@
+<h1>Listing feeds</h1>
+<%= link_to 'New Feed', new_feed_path %>
+<br/><br/>
+<% @feeds.each do |feed| %>
+  <ul>
+    <li><b>Title:</b> <%= feed.title %></li>
+    <li><b>Host:</b> <%= feed.host %></li>
+    <li><b>Feed URL:</b> <%= feed.feed_url %></li>
+    <li><b>etag:</b> <%= feed.etag %></li>
+    <li><b>Last Modified:</b> <%= time_ago_in_words(feed.last_modified)%> ago</li>
+    <li><b>Articles Count:</b> <%= feed.articles.size%></li>
+    <%= link_to 'Show', feed %> | <%= link_to 'Edit', edit_feed_path(feed) %> | <%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %>
+</ul>
+
+    <hr>
+<% end %>
